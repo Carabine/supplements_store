@@ -1,0 +1,32 @@
+<div class="my-4 ">
+  <% @cart.orderables.each do |orderable| %>
+    <% product = orderable.product %>
+    <div id="<%= "cart-#{product.id}" %>" class="card mb-2">
+      <div class="card-body py-2">
+        <div class="row align-items-center">
+          <div class="col-md-4 col-12">
+            <strong>Name:</strong> <%= product.name %><br>
+            <small><strong>Description:</strong> <%= product.description %></small>
+          </div>
+          <div class="col-md-3 col-12 text-md-center">
+            <strong>Price:</strong> <%= number_to_currency(product.price) %><br>
+            <strong>Total:</strong> <%= number_to_currency(orderable.total) %>
+          </div>
+          <div class="col-md-3 col-6">
+            <%= form_with(url: cart_add_path, class: "d-flex align-items-center") do |f| %>
+              <%= f.hidden_field :id, value: product.id %>
+              <%= f.number_field :quantity, value: orderable.quantity, min: 0, class: "form-control form-control-sm me-2", style: "max-width: 70px;" %>
+              <button type="submit" class="btn btn-success btn-sm">Update</button>
+            <% end %>
+          </div>
+          <div class="col-md-2 col-6 text-end">
+            <%= form_with(url: cart_remove_path, class: "d-inline") do |f| %>
+              <%= f.hidden_field :id, value: orderable.id %>
+              <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

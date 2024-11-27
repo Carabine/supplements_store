@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>iSupplements</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+  <body>
+    <header class="bg-dark text-white p-3">
+      <div class="container d-flex justify-content-between">
+        <h1>iSupplements</h1>
+
+        <div class="d-flex align-items-center">
+          <% if user_signed_in? %>
+            <%= link_to 'Logout', logout_path, method: :delete, class: 'btn btn-danger' %>
+          <% else %>
+            <%= link_to 'Login', login_path, class: 'btn btn-primary' %>
+          <% end %>
+        </div>
+      </div>
+    </header>
+
+    <%= render partial: "cart/cart" if @render_cart %>
+
+    <div class="container mt-4 content">
+      <%= yield %>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer mt-auto bg-dark">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h5>Contact Us</h5>
+            <ul class="list-unstyled">
+              <li>Email: <a href="mailto:support@isupplements.com">support@isupplements.com</a></li>
+              <li>Phone: +38 (096) 123-4567</li>
+              <li>Address: 12 Dovha St, Kyiv, Ukraine</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <h5>About Us</h5>
+            <p>We are a leading online store dedicated to providing high-quality supplements to support your health and fitness goals. With a wide range of products, from vitamins and protein powders to herbal remedies.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

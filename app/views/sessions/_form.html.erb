@@ -1,0 +1,23 @@
+<%= form_with url: login_path, method: :post, local: true do |f| %>
+  <div class="mb-3">
+    <%= f.label :email, "Email" %>
+    <%= f.email_field :email, class: "form-control", required: true %>
+    <% if user && user.errors[:email].any? %>
+      <div class="text-danger">
+        <%= user.errors[:email].first %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :password, "Password" %>
+    <%= f.password_field :password, class: "form-control", required: true %>
+    <% if user && user.errors[:password].any? %>
+      <div class="text-danger">
+        <%= user.errors[:password].first %>
+      </div>
+    <% end %>
+  </div>
+
+  <%= f.submit "Login", class: "btn btn-primary" %>
+<% end %>

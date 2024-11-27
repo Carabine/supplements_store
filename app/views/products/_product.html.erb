@@ -1,0 +1,25 @@
+<div id="<%= dom_id product %>" class="card mb-3">
+  <div class="card-body">
+    <div class="column">
+      <div class="col-md-4 w-100">
+        <strong>Name:</strong> <%= product.name %>
+      </div>
+      <div class="col-md-4 w-100">
+        <strong>Description:</strong> <%= product.description %>
+      </div>
+      <div class="col-md-4 w-100">
+        <strong>Price:</strong> <%= number_to_currency(product.price) %>
+      </div>
+    </div>
+
+    <div class="mt-3">
+      <%= form_with(url: cart_add_path, class: "d-flex align-items-center gap-2") do |f| %>
+        <%= f.hidden_field :id, value: product.id %>
+        <div class="me-2">
+          <%= f.number_field :quantity, value: 1, min: 1, class: "form-control" %>
+        </div>
+        <%= f.submit "Add To Cart", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="container mt-4">
+  <% if notice %>
+    <div class="alert alert-success" role="alert">
+      <%= notice %>
+    </div>
+  <% end %>
+
+  <h1 class="mb-4">Products</h1>
+
+  <div id="products" class="row">
+    <% @products.each do |product| %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <%= render product %>
+          <% if admin_user? %>
+          <div class="card-body">
+             <p>
+               <%= link_to "Show this product", product, class: "btn btn-primary btn-sm" %>
+             </p>
+           </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <% if admin_user? %>
+  <%= link_to "New product", new_product_path, class: "btn btn-success mt-3" %>
+  <% end %>
+
+</div>
