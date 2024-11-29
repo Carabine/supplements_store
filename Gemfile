@@ -73,3 +73,4 @@ end
 
 gem 'bootstrap', '~> 5.3.3'
 gem 'bcrypt', '~> 3.1.7'
+gem 'pg'
